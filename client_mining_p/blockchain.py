@@ -169,7 +169,7 @@ def mine():
             block = blockchain.new_block(submitted_proof, previous_hash)
 
             response = {
-                'message': "Success"
+                'message': "New Block Forged"
             }
 
             return jsonify(response), 200

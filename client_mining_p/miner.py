@@ -95,7 +95,7 @@ if __name__ == '__main__':
             print(r)
             break
         
-        if data['message'] == 'New Block Aligned!':
+        if data['message'] == 'New Block Forged':
             coins += 1
             print('You have received 1 coin, total coins: ', coins)
             print(data)
