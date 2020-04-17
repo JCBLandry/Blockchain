@@ -142,23 +142,20 @@ def receive_transaction():
 
 @app.route('/mine', methods=['POST'])
 def mine():
+    # take info from json request, store it in value
     values = request.get_json()
-
+    #must have proof and id in the json
     required = ['proof', 'id']
     if not all(k in values for k in required):
+        #let em know if they are missing
         response = {'message': "Missing values"}
         return jsonify(response), 400
-
+    # store the proof from the proof
     submitted_proof = values.get('proof')
-
-    #  * Modify the `mine` endpoint to instead receive and validate or reject a new proof sent by a client.
-    # * It should accept a POST
-    # * Use `data = request.get_json()` to pull the data out of the POST
-    #     * Note that `request` and `requests` both exist in this project
-    # * Check that 'proof', and 'id' are present
-    #     * return a 400 error using `jsonify(response)` with a 'message'
-
+    # grab the values and store em in block_string
     block_string = json.dumps(blockchain.last_block, sort_keys=True)
+    
+    # if the proof is good, add a new transaction
     if blockchain.valid_proof(block_string, submitted_proof):
 
             blockchain.new_transaction('0',

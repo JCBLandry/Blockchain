@@ -36,6 +36,7 @@ def valid_proof(block_string, proof):
     correct number of leading zeroes.
     :return: True if the resulting hash is a valid proof, False otherwise
     """
+    #
     guess = f'{block_string}{proof}'.encode()
     guess_hash = hashlib.sha256(guess).hexdigest()
 
@@ -66,14 +67,14 @@ if __name__ == '__main__':
             data = r.json()
         except ValueError:
             print("Error:  Non-json response")
-            print("Response:")
+            print("Response returned:")
             print(r)
             break
         
         
         # Get the block from `data` and use it to look for a new proof
         block = data['last_block']
-        print('Summoning new proof')
+        print('Summoning New proof')
         new_proof = proof_of_work(block)
 
         # When found, POST it to the server {"proof": new_proof, "id": id}
@@ -91,7 +92,7 @@ if __name__ == '__main__':
             data = r.json()
         except ValueError:
             print("Error:  Non-json response")
-            print("Response:")
+            print("Response returned:")
             print(r)
             break
         
