@@ -13,7 +13,7 @@ class Blockchain(object):
         # Create the genesis block
         self.new_block(previous_hash=1, proof=100)
 
-    def new_transaction(self, sender, recipient, amount):
+    def new_transaction(self, sender, recipient, amount, senderID):
 #         """
 #         Creates a new transaction to go into the next mined Block
 # ​
@@ -24,6 +24,7 @@ class Blockchain(object):
 #         """
         self.current_transactions.append({
             'sender': sender,
+            'senderID': senderID,
             'recipient': recipient,
             'amount': amount
         })
